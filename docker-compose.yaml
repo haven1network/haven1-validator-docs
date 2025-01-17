@@ -1,0 +1,27 @@
+services:
+  node:
+    env_file:
+      - .env
+    image: quorumengineering/quorum:24.4.1
+    volumes:
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh
+      - ../data:/data
+      - ./keystore:/keystore:ro
+    network_mode: host
+    entrypoint: ["sh", "-c", /docker-entrypoint.sh]
+    logging:
+      driver: json-file
+      options:
+        max-size: "5G"
+        max-file: "3"
+  cosigner:
+    env_file:
+      - .env
+    image: cosigner:private
+    entrypoint: ["java", "-jar", "cosigner.jar"]
+    network_mode: host
+    logging:
+      driver: json-file
+      options:
+        max-size: "5G"
+        max-file: "3"
