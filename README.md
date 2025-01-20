@@ -238,7 +238,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 6. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
 
     ```bash
-    echo 'RPC={"81": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}' >> .env
+    echo 'RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}' >> .env
     ```
 
 7. Copy the string inside `genesis.base64` and run the following command
