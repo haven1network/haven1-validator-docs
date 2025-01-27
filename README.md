@@ -250,7 +250,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 8. Download and load cosigner image
 
     ```bash
-    curl -o cosigner.tar.gz '<link to cosigner image>'
+    curl -L -o cosigner.tar.gz '<link to cosigner image>'
     docker load -i cosigner.tar.gz
     ```
 
