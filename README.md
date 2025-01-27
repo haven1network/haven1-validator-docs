@@ -447,12 +447,13 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
     - nodekey.pub
     - `HOSTNAME` value used
     - public IP
+    - Signer Public Key
 
     You can use this command, copy the result and send it to us:
 
     ```bash
     printf "\n\n\n\n Copy the following Data \n\n\n"
-    echo -n "AWS KMS Cosigner Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Signing --query 'PublicKey' --output text)"
+    echo -n "AWS KMS Signer Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Signing --query 'PublicKey' --output text)"
     for file in keystore/address keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
     printf "\n\n\n\n"
     ```
