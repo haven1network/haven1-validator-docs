@@ -300,8 +300,6 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     printf "\n\n\n\n"
     ```
 
-2. Share the address of the wallet that would be signing transactions on behalf of the validator. This wallet could be from `Safe`(safe.haven1.org) or `Metamask`. This wallet would be used to sign transactions to add nodes to the networks and other admin related transactions.
-
 ### Archive Hardware Requirements
 
 AWS (t3.large)
