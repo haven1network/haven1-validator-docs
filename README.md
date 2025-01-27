@@ -282,8 +282,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 ### Sharing Instance Information
 
 1. Share the following information from the validator instance with the Haven1 team.
-    - address
-    - admin/address
+    - keystore/address
     - nodekey.pub
     - `HOSTNAME` value used
     - public IP
@@ -301,7 +300,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     printf "\n\n\n\n"
     ```
 
-2. Share the address of the wallet that would be signing transactions on behalf of the validator. This wallet could be from `Safe`(safe.testnet.haven1.org) or `Metamask`. This wallet would be used to sign transactions to add nodes to the networks and other admin related transactions.
+2. Share the address of the wallet that would be signing transactions on behalf of the validator. This wallet could be from `Safe`(safe.haven1.org) or `Metamask`. This wallet would be used to sign transactions to add nodes to the networks and other admin related transactions.
 
 ### Archive Hardware Requirements
 
