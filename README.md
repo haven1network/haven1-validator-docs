@@ -286,7 +286,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     - nodekey.pub              -> Used to add the node to the network
     - `HOSTNAME` value used
     - public IP
-    - cosigner public key      -> Used to sign bridge transactions for cosigner
+    - cosigner public key      -> Used by the cosigner to sign critical network transactions
 
     We will use this information to add the node to the network.
 
@@ -446,7 +446,7 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
     - nodekey.pub              -> Used to add the node to the network
     - `HOSTNAME` value used
     - public IP
-    - Signer Public Key        -> Used to sign admin transactions
+    - Signer Public Key        -> Used to sign network admin transactions
 
     You can use this command, copy the result and send it to us:
 
