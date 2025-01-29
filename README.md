@@ -231,8 +231,18 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 
 5. Add KMS key to the validator env *If you have changed the name of the key, you need to change it in the query*
 
-    ```bash
+   You can run the following command if you are on AWS
+
+   ```bash
     echo "KEY_0=kms:$(aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Validator'].TargetKeyId" --output text )" >> .env
+    ```
+
+   If you are on GCP platform then replace the variables and run the following command
+
+   ```bash
+    echo "GCP_PROJECT_ID=$gcp_project_id" >> .env
+    echo "GCP_LOCATION_ID=$gcp_location" >> .env
+    echo "KEY_0=gcp:$key_ring_id:$key_id:$key_version" >> .env
     ```
 
 6. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
