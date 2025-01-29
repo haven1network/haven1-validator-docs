@@ -282,11 +282,11 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 ### Sharing Instance Information
 
 1. Share the following information from the validator instance with the Haven1 team.
-    - keystore/address
-    - nodekey.pub
+    - address                  -> Used to validate blocks in the chain
+    - nodekey.pub              -> Used to add the node to the network
     - `HOSTNAME` value used
     - public IP
-    - cosigner public key
+    - cosigner public key      -> Used by the cosigner to sign critical network transactions
 
     We will use this information to add the node to the network.
 
@@ -443,18 +443,17 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
 ### Archive Sharing Instance Information
 
 1. Share the following information with the Haven1 team.
-    - address
-    - nodekey.pub
+    - nodekey.pub              -> Used to add the node to the network
     - `HOSTNAME` value used
     - public IP
-    - Signer Public Key
+    - Signer Public Key        -> Used to sign network admin transactions
 
     You can use this command, copy the result and send it to us:
 
     ```bash
     printf "\n\n\n\n Copy the following Data \n\n\n"
     echo -n "AWS KMS Signer Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Signing --query 'PublicKey' --output text)"
-    for file in keystore/address keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
+    for file in keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
     printf "\n\n\n\n"
     ```
 
