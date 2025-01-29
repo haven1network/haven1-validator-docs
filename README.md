@@ -245,32 +245,32 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     echo "KEY_0=gcp:$key_ring_id:$key_id:$key_version" >> .env
     ```
 
-7. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
+6. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
 
     ```bash
     echo 'RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}' >> .env
     ```
 
-8. Copy the string inside `genesis.base64` and run the following command
+7. Copy the string inside `genesis.base64` and run the following command
 
     ```bash
     sudo bash -c "echo \"<YOUR genesis.base64 STRING>\" | base64 --decode > ../data/genesis.json"
     ```
 
-9. Download and load cosigner image
+8. Download and load cosigner image
 
     ```bash
     curl -L -o cosigner.tar.gz '<link to cosigner image>'
     docker load -i cosigner.tar.gz
     ```
 
-10. Check if image has been loaded properly. If output is empty contact the Haven1 team.
+9. Check if image has been loaded properly. If output is empty contact the Haven1 team.
 
     ```bash
     docker images cosigner:private
     ```
 
-11. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
+10. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
 
     ```bash
     npx quorum-genesis-tool \
@@ -280,7 +280,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     --outputPath artifacts
     ```
 
-12. Copy the generated artifacts:
+11. Copy the generated artifacts:
 
     ```bash
     cp artifacts/*/validator0/nodekey* keystore
