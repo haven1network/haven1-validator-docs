@@ -231,36 +231,46 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 
 5. Add KMS key to the validator env *If you have changed the name of the key, you need to change it in the query*
 
-    ```bash
+   You can run the following command if you are on AWS
+
+   ```bash
     echo "KEY_0=kms:$(aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Validator'].TargetKeyId" --output text )" >> .env
     ```
 
-6. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
+   If you are on GCP platform then replace the variables and run the following command
+
+   ```bash
+    echo "GCP_PROJECT_ID=$gcp_project_id" >> .env
+    echo "GCP_LOCATION_ID=$gcp_location" >> .env
+    echo "KEY_0=gcp:$key_ring_id:$key_id:$key_version" >> .env
+    ```
+
+7. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
 
     ```bash
     echo 'RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}' >> .env
     ```
 
-7. Copy the string inside `genesis.base64` and run the following command
+8. Copy the string inside `genesis.base64` and run the following command
 
     ```bash
     sudo bash -c "echo \"<YOUR genesis.base64 STRING>\" | base64 --decode > ../data/genesis.json"
     ```
 
-8. Download and load cosigner image
+9. Download and load cosigner image
 
     ```bash
     curl -L -o cosigner.tar.gz '<link to cosigner image>'
     docker load -i cosigner.tar.gz
     ```
 
-9. Check if image has been loaded properly. If output is empty contact the Haven1 team.
+10. Check if image has been loaded properly. If output is empty contact the Haven1 team.
 
     ```bash
     docker images cosigner:private
     ```
 
-10. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
+11. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
 
     ```bash
     npx quorum-genesis-tool \
@@ -270,7 +280,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     --outputPath artifacts
     ```
 
-11. Copy the generated artifacts:
+12. Copy the generated artifacts:
 
     ```bash
     cp artifacts/*/validator0/nodekey* keystore
