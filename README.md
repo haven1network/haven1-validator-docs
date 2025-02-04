@@ -248,7 +248,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
    If you are on Azure platform then encode your key url with base64 then replace the variables below and run the following command (your key url should look like https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a)
 
    ```bash
-   echo "KEY_0=azure:$base64_encoded_url"
+   echo "KEY_0=azure:$base64_encoded_url" >> .env
    ```
 
 7. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
