@@ -133,7 +133,7 @@ You will need the following from the haven1 team:
 
 You can perform the following steps in the validator instance:
 
-  The output of the commands below will give a output with the following format:
+  The output of the commands below will give an output with the following format:
 
   ```bash
   2000-00-00 00:00:00 INFO MainKt - Cosigner Address: 0x<address> 
@@ -147,7 +147,7 @@ You can perform the following steps in the validator instance:
 
   Admin Key:
 
-  Depending on the cloud provider you run the following commadn for the admin key:
+  Depending on the cloud provider you run the following command for the admin key:
 
   AWS:
 
