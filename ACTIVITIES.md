@@ -161,7 +161,7 @@ You can perform the following steps in the validator instance:
   ```bash
   docker run \
       -e=KEY_0=kms:$(aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text ) \
-      -e=AWS_CURRENT_REGION="YOUR REGION HERE¸" \
+      -e=AWS_CURRENT_REGION=<YOUR REGION HERE> \
       keygen:latest
   ```
 
@@ -184,3 +184,74 @@ You can perform the following steps in the validator instance:
       -e=KEY_0=azure:$base64_encoded_url \
       keygen:latest
   ```
+
+## Update Cosigner image
+
+- Carry out this activity when the Haven1 Team instructs you.
+- We will provide you with the following information.
+  - link for cosigner image
+  - any additional information required for the .env file.
+
+1. Log into the validator instance.
+2. Run the following command to update the cosigner image:
+
+    ```bash
+    curl -L -o '<link to cosigner image>'
+    docker load -i '<link to cosigner image>'
+    ```
+
+3. Update the .env file regarding the instructions provided in the [activity](#generate-cosigner-env).
+
+## Generate Cosigner .env
+
+- Carry out this activity when the Haven1 Team instructs you or when you need to update the .env file.
+- We will provide you with the following information.
+  - any additional information required for the .env file.
+
+Create a new file .env.new with the values of <> replaced with the appropriate values give by the instructions below.
+
+```env
+HOSTNAME=<Your Organisation Name-RPC>
+VERBOSITY=3
+NETWORKID=8811
+IP=<Public IP (Elastic IP in case of AWS)>
+HAVEN1_CHAINID=810
+BRIDGE_CONTROLLER_ADDRESS=0x6dfe5c9fEcEF7B1AD2D6E194dE112EFA65ef51Fb
+BRIDGE_RELAYER_ADDRESS=0x895e96c1566A939b58C33F36606c1C9D538D36aA
+RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}
+SAFE_ADDRESS={ "8811:1": "0x0", "1:8811": "0x0", "8811:8453": "0x0", "8453:8811": "0x0", "8811:8811": "0x0" }
+SAFE_URL={"8811":"https://safe-transaction.haven1.org","84532":"https://safe-transaction-base.safe.global/","1":"https://safe-transaction.safe.global/"}
+BLOCK_CONFIRMATION={"8811":"0","1":"0","8453":"0"}
+```
+
+Once the `.env.new` file is generetad add the key details depending on the cloud provider you run to the file.
+
+AWS:
+
+  ```env
+  KEY_0=kms:OUTPUT of the command `aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text`
+  AWS_CURRENT_REGION=YOUR REGION HERE
+  ```
+
+GCP:
+
+  ```env
+  GCP_PROJECT_ID=YOUR PROJECT ID HERE
+  GCP_LOCATION_ID=YOUR LOCATION ID HERE
+  KEY_0=gcp:KEY_RING_ID:KEY_ID:KEY_VERSION
+  ```
+
+Azure:
+
+Encode your key url with base64 then replace the variables below and run the following command (your key url should look like <https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a>)
+
+  ```env
+  KEY_0=azure:$base64_encoded_url
+  ```
+
+then you can move the existing .env file to .env.bak and rename the .env.new to .env
+
+```bash
+mv .env .env.bak
+mv .env.new .env
+```
