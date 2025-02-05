@@ -133,6 +133,13 @@ You will need the following from the haven1 team:
 
 You can perform the following steps in the validator instance:
 
+  Load the keygen image:
+
+  ```bash
+  curl -L -o keygen.tar.gz '<link to keygen image>'
+  docker load -i keygen.tar.gz
+  ```
+
   The output of the commands below will give an output with the following format:
 
   ```bash
