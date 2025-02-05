@@ -124,7 +124,6 @@ Get the following file from the [Haven1 Team](mailto:contact@haven1.org)
 
 - genesis.base64 (base 64 encoded)
 - link for cosigner image
-- link for keygen image
 
 Provide the address where you would like your rewards to be sent ([Haven1 Team](mailto:contact@haven1.org))
 
@@ -246,40 +245,38 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     echo "KEY_0=gcp:$key_ring_id:$key_id:$key_version" >> .env
     ```
 
-   If you are on Azure platform then encode your key url with base64 then replace the variables below and run the following command (your key url should look like https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a)
+   If you are on Azure platform then encode your key url with base64 then replace the variables below and run the following command (your key url should look like <https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a>)
 
    ```bash
    echo "KEY_0=azure:$base64_encoded_url" >> .env
    ```
 
-6. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
+7. Add your RPC urls in the command below, we support ETH, BASE and Haven1 Network at the moment.
 
     ```bash
     echo 'RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}' >> .env
     ```
 
-7. Copy the string inside `genesis.base64` and run the following command
+8. Copy the string inside `genesis.base64` and run the following command
 
     ```bash
     sudo bash -c "echo \"<YOUR genesis.base64 STRING>\" | base64 --decode > ../data/genesis.json"
     ```
 
-8. Download and load, keygen and cosigner image
+9. Download and load cosigner image
 
     ```bash
     curl -L -o cosigner.tar.gz '<link to cosigner image>'
-    curl -L -o keygen.tar.gz '<link to keygen image>'
     docker load -i cosigner.tar.gz
-    docker load -i keygen.tar.gz
     ```
 
-9. Check if image has been loaded properly. If output is empty contact the Haven1 team.
+10. Check if image has been loaded properly. If output is empty contact the Haven1 team.
 
     ```bash
     docker images cosigner:private
     ```
 
-10. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
+11. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
 
     ```bash
     npx quorum-genesis-tool \
@@ -289,7 +286,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     --outputPath artifacts
     ```
 
-11. Copy the generated artifacts:
+12. Copy the generated artifacts:
 
     ```bash
     cp artifacts/*/validator0/nodekey* keystore
@@ -306,7 +303,6 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
     - `HOSTNAME` value used
     - public IP
     - cosigner public key      -> Used by the cosigner to sign critical network transactions
-    - admin key                -> Used for safe admin trasactions regarding the network
 
     We will use this information to add the node to the network.
 
@@ -315,55 +311,9 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 
     ```bash
     printf "\n\n\n\n Copy the following Data \n\n\n"
+    echo -n "AWS KMS Cosigner Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Validator --query 'PublicKey' --output text)"
     for file in keystore/address keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
     printf "\n\n\n\n"
-    ```
-
-    Key generation
-
-    The output of the following commands will give a line with the following format:
-
-    ```bash
-    2000-00-00 00:00:00 INFO MainKt - Cosigner Address: 0x<address> 
-    ```
-
-    ```bash
-    docker run --env-file=.env keygen:latest
-    ```
-
-    ```bash
-    2000-00-00 00:00:00 INFO MainKt - Cosigner Address: 0x<address> 
-    ```
-
-    Depending on the cloud provider you run the following commadn for the admin key:
-
-    AWS:
-
-    ```bash
-    docker run \
-        -e=KEY_0=kms:$(aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text ) \
-        -e=AWS_CURRENT_REGION="YOUR REGION HERE¸" \
-        keygen:latest
-    ```
-
-    GCP:
-
-    ```bash
-    docker run \
-        -e=GCP_PROJECT_ID=$gcp_project_id \
-        -e=GCP_LOCATION_ID=$gcp_location \
-        -e=KEY_0=gcp:$key_ring_id:$key_id:$key_version \
-        keygen:latest
-    ```
-
-    Azure:
-
-    Encode your key url with base64 then replace the variables below and run the following command (your key url should look like <https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a>)
-
-    ```bash
-    docker run \
-        -e=KEY_0=azure:$base64_encoded_url \
-        keygen:latest
     ```
 
 ### Archive Hardware Requirements
@@ -487,14 +437,7 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
     bash -c "echo \"<YOUR genesis.base64 STRING>\" | base64 --decode > ../../data/genesis.json"
     ```
 
-6. Download and load, keygen and cosigner image
-
-    ```bash
-    curl -L -o keygen.tar.gz '<link to keygen image>'
-    docker load -i keygen.tar.gz
-    ```
-
-7. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
+6. Install and run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) to generate a new set of keys and node `(press y to continue)`:
 
     ```bash
     npx quorum-genesis-tool \
@@ -512,7 +455,6 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
     cp artifacts/*/validator0/address keystore
     rm -rf artifacts
     ```
-
 
 ### Archive Sharing Instance Information
 

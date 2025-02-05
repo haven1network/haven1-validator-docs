@@ -122,3 +122,58 @@ Reach out to the Haven1 team for guidance on how to create a configuration chang
     ```
 
 7. Remove the validator from the safe account
+
+## Generate Public Keys
+
+Carry out this activity when you need to know the public key of the cosigner and the admin key.
+
+You will need the following from the haven1 team:
+
+- link for keygen image
+
+You can perform the following steps in the validator instance:
+
+  The output of the commands below will give a output with the following format:
+
+  ```bash
+  2000-00-00 00:00:00 INFO MainKt - Cosigner Address: 0x<address> 
+  ```
+
+  Cosigner Key:
+
+  ```bash
+  docker run --env-file=.env keygen:latest
+  ```
+
+  Admin Key:
+
+  Depending on the cloud provider you run the following commadn for the admin key:
+
+  AWS:
+
+  ```bash
+  docker run \
+      -e=KEY_0=kms:$(aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text ) \
+      -e=AWS_CURRENT_REGION="YOUR REGION HERE¸" \
+      keygen:latest
+  ```
+
+  GCP:
+
+  ```bash
+  docker run \
+      -e=GCP_PROJECT_ID=$gcp_project_id \
+      -e=GCP_LOCATION_ID=$gcp_location \
+      -e=KEY_0=gcp:$key_ring_id:$key_id:$key_version \
+      keygen:latest
+  ```
+
+  Azure:
+
+  Encode your key url with base64 then replace the variables below and run the following command (your key url should look like <https://test-key-v-1.vault.azure.net/keys/test-key-1/82b723fcb1a24c3ba08e98a4a972847a>)
+
+  ```bash
+  docker run \
+      -e=KEY_0=azure:$base64_encoded_url \
+      keygen:latest
+  ```
