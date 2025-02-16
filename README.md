@@ -120,7 +120,7 @@ AWS (t3.large)
 
 ### Prerequisites
 
-Get the following file from the [Haven1 Team](mailto:contact@haven1.org)
+Get the following files from the [Haven1 Team](mailto:contact@haven1.org)
 
 - genesis.base64 (base 64 encoded)
 - link for cosigner image
@@ -311,7 +311,7 @@ Connect to the validator instance with EC2 Instance Connect and run the followin
 
     ```bash
     printf "\n\n\n\n Copy the following Data \n\n\n"
-    echo -n "AWS KMS Cosigner Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Validator --query 'PublicKey' --output text)"
+    echo "AWS KMS Cosigner Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Validator --query 'PublicKey' --output text)"
     for file in keystore/address keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
     printf "\n\n\n\n"
     ```
@@ -468,7 +468,7 @@ Connect to the archive instance with EC2 Instance Connect and run the following 
 
     ```bash
     printf "\n\n\n\n Copy the following Data \n\n\n"
-    echo -n "AWS KMS Signer Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Signing --query 'PublicKey' --output text)"
+    echo "AWS KMS Signer Public Key: $(aws kms get-public-key --key-id=alias/Haven1-Signing --query 'PublicKey' --output text)"
     for file in keystore/nodekey.pub .env; do printf "%s: %s\n" "$file" "$(cat "$file")"; done
     printf "\n\n\n\n"
     ```
