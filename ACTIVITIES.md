@@ -3,7 +3,7 @@
 ## Approve a new validator
 
 - Carry out this activity when the Haven1 Team instructs you.
-- We will provide you with an updated `static-nodes.json` and the following information of the new validator.
+- We will provide an updated `static-nodes.json` and the following information about the new validator.
   - address
   - accountAddress
   - encodeID
@@ -22,13 +22,13 @@
     
     ```
 
-4. In order to complete the node addition, you will need to use your SAFE admin account to approve the enhanced permissioning change as explained [here](#approving-a-change-in-enhanced-permissioning)
+4. To complete the node addition, you will need to use your SAFE admin account to approve the enhanced permissioning change as explained  [here](#approving-a-change-in-enhanced-permissioning)
 
-5. Add this validators to all bridge safes as well in a similar manner to the above steps.
+5. Add this validator to all bridge safes as well in a similar manner to the above steps.
 
 ## Approving a change in enhanced permissioning
 
-1. The proposer or the Haven1 team will reach out to you when there's a change that is being proposed.
+1. The proposer or the Haven1 team will contact you when a change is proposed.
 2. Login into your validator safe account.
 3. Go to transaction ![View Transaction](https://github.com/user-attachments/assets/d3d80357-71a9-4069-aa7a-e51552612444)
 4. You should see the pending transaction ![Pending Transaction](https://github.com/user-attachments/assets/a50bc501-3bc6-4a44-ae2c-d49d1c9e261a)
@@ -63,7 +63,7 @@ Reach out to the Haven1 team for guidance on how to create a configuration chang
   - `blockNumber` from which to fork in hexadecimal format
 
 1. Disconnect your validator from the other nodes in the network.
-2. Conenct to the validator node:
+2. Connect to the validator node:
 
     ```bash
     docker compose exec -it node geth attach /data/geth.ipc
@@ -83,11 +83,11 @@ Reach out to the Haven1 team for guidance on how to create a configuration chang
 
 5. Please update the Haven1 team.
 
-6. Wait for the haven1 team to contact you before conneting to other nodes.
+6. Wait for the haven1 team to contact you before connecting to other nodes.
 
 ## Remove a validator
 
-- We will provide you with an updated `static-nodes.json` and the following information of the new validator.
+- We will provide an updated `static-nodes.json` and the following information about the new validator.
   - address
   - accountAddress
   - encodeID
@@ -110,7 +110,7 @@ Reach out to the Haven1 team for guidance on how to create a configuration chang
 
 5. Once enough proposals happen (> 50%) istanbul.getValidators() will remove the validator (this will not create a classic transaction in the blockchain)
 
-6. Run the following command equivalant in the safe wallet or approve the enhanced permissioning change as explained [here](#approving-a-change-in-enhanced-permissioning) if not the first validator
+6. Run the following command equivalent in the safe wallet or approve the enhanced permissioning change as explained [here](#approving-a-change-in-enhanced-permissioning) if not the first validator
 
     ```js
     quorumPermission.updateNodeStatus(
@@ -208,7 +208,7 @@ You can perform the following steps in the validator instance:
 - We will provide you with the following information.
   - any additional information required for the .env file.
 
-Create a new file .env.new with the values of <> replaced with the appropriate values give by the instructions below.
+Create a new file .env.new with the values of <> replaced with the appropriate values given by the instructions below.
 
 ```env
 HOSTNAME=<Your Organisation Name-RPC>
@@ -224,7 +224,7 @@ SAFE_URL={"8811":"https://safe-transaction.haven1.org","84532":"https://safe-tra
 BLOCK_CONFIRMATION={"8811":"0","1":"0","8453":"0"}
 ```
 
-Once the `.env.new` file is generetad add the key details depending on the cloud provider you run to the file.
+Once the `.env.new` file is generated add the key details depending on the cloud provider you run to the file.
 
 AWS:
 
