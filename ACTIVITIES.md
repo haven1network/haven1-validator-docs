@@ -255,3 +255,8 @@ then you can move the existing .env file to .env.bak and rename the .env.new to 
 mv .env .env.bak
 mv .env.new .env
 ```
+
+## Monitoring Node
+
+If you want to monitor your node using your existing monitoring tools you can use the following link for monitoring information.
+https://docs.goquorum.consensys.io/configure-and-manage/monitor/metrics
