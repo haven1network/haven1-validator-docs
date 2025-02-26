@@ -13,6 +13,7 @@ exec geth \
 --verbosity ${VERBOSITY} \
 --datadir /data \
 --syncmode snap \
+--gcmode full \
 --port 30303 \
 --nousb \
 --identity ${HOSTNAME}-validator \
