@@ -210,19 +210,19 @@ You can perform the following steps in the validator instance:
 
 Create a new file .env.new with the values of <> replaced with the appropriate values given by the instructions below.
 
-```env
-HOSTNAME=<Your Organisation Name-RPC>
-VERBOSITY=3
-NETWORKID=8811
-IP=<Public IP (Elastic IP in case of AWS)>
-HAVEN1_CHAINID=8811
-BRIDGE_CONTROLLER_ADDRESS=0x6dfe5c9fEcEF7B1AD2D6E194dE112EFA65ef51Fb
-BRIDGE_RELAYER_ADDRESS=0x895e96c1566A939b58C33F36606c1C9D538D36aA
-RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}
-SAFE_ADDRESS={ "8811:1": "0x0", "1:8811": "0x0", "8811:8453": "0x0", "8453:8811": "0x0", "8811:8811": "0x0" }
-SAFE_URL={"8811":"https://safe-transaction.haven1.org","84532":"https://safe-transaction-base.safe.global/","1":"https://safe-transaction.safe.global/"}
-BLOCK_CONFIRMATION={"8811":"0","1":"0","8453":"0"}
-```
+  ```env
+  HOSTNAME=<Your Organisation Name-RPC>
+  VERBOSITY=3
+  NETWORKID=8811
+  IP=<Public IP (Elastic IP in case of AWS)>
+  HAVEN1_CHAINID=8811
+  BRIDGE_CONTROLLER_ADDRESS=0x74dfadc72C94E144ed56E7E252021FC0F1217Ce9
+  BRIDGE_RELAYER_ADDRESS=0xA04Fea11cf58d420687dD12aA5AcDFD70b872545
+  SAFE_URL={"8811":"https://safe-transaction.haven1.org/","1":"https://safe-transaction-mainnet.safe.global/","8453":"https://safe-transaction-base.safe.global/"}
+  SAFE_ADDRESS={"1:8811":"0x25AF0c735a659a34DeCA103e00B92Ef8450383a5","8811:1":"0x2C0C9a76d8061Cf35DB7f7c2a53085025aFa3057","8811:8453":"0x2C0C9a76d8061Cf35DB7f7c2a53085025aFa3057","8453:8811":"0x41FFd702c689B9d2057d58B99F59568cCe14aa88","8811:8811":"0x207CA9C87c4C1659DCb49B0143Bfeffd9711300a"}
+  BLOCK_CONFIRMATION={"8811":"0","1":"-1","8453":"-1"}
+  RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}
+  ```
 
 Once the `.env.new` file is generated add the key details depending on the cloud provider you run to the file.
 
@@ -230,15 +230,15 @@ AWS:
 
   ```env
   KEY_0=kms:OUTPUT of the command `aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text`
-  AWS_CURRENT_REGION=YOUR REGION HERE
+  AWS_CURRENT_REGION=<YOUR REGION HERE>
   ```
 
 GCP:
 
   ```env
-  GCP_PROJECT_ID=YOUR PROJECT ID HERE
-  GCP_LOCATION_ID=YOUR LOCATION ID HERE
-  KEY_0=gcp:KEY_RING_ID:KEY_ID:KEY_VERSION
+  GCP_PROJECT_ID=<YOUR PROJECT ID HERE>
+  GCP_LOCATION_ID=<YOUR LOCATION ID HERE>
+  KEY_0=<gcp:KEY_RING_ID:KEY_ID:KEY_VERSION>
   ```
 
 Azure:
@@ -254,6 +254,13 @@ then you can move the existing .env file to .env.bak and rename the .env.new to 
 ```bash
 mv .env .env.bak
 mv .env.new .env
+```
+
+Run the container with the new .env file
+
+```bash
+docker-compose down cosigner
+docker-compose up -d cosigner
 ```
 
 ## Monitoring Node
