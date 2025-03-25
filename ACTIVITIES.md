@@ -267,3 +267,55 @@ docker-compose up -d cosigner
 
 If you want to monitor your node using your existing monitoring tools you can use the following link for monitoring information.
 https://docs.goquorum.consensys.io/configure-and-manage/monitor/metrics
+
+## Reset Node Data
+
+- Carry out this activity when the Haven1 Team instructs you or when you need to reset a corrupted node.
+
+Assume the sudo user
+
+1. Log into the instance.
+2. Assume the sudo user:
+
+  ```bash
+  sudo su
+  ```
+
+3. Turn the node off:
+
+  for validator node:
+
+  ```bash
+  cd /home/ec2-user/validator
+  docker compose down
+  ```
+
+  for archive node:
+
+  ```bash
+  cd /home/ec2-user/validator/archive-node
+  docker compose down
+  ```
+
+4. Clean the geth in data directory:
+
+  ```bash
+  cd /home/ec2-user/data
+  rm -rf geth*
+  ```
+
+5. Restart the node:
+
+  for validator node:
+
+  ```bash
+  cd /home/ec2-user/validator
+  docker compose up -d
+  ```
+
+  for archive node:
+
+  ```bash
+  cd /home/ec2-user/validator/archive-node
+  docker compose up -d
+  ```
