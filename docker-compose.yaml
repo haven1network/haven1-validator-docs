@@ -2,7 +2,7 @@ services:
   node:
     env_file:
       - .env
-    image: quorumengineering/quorum:24.4.1
+    image: registry.haven1.org/haven1-node:1.1.0
     volumes:
       - ./docker-entrypoint.sh:/docker-entrypoint.sh
       - ../data:/data
@@ -17,7 +17,7 @@ services:
   cosigner:
     env_file:
       - .env
-    image: cosigner:private
+    image: registry.haven1.org/cosigner:1.368.0
     entrypoint: ["java", "-jar", "cosigner.jar"]
     network_mode: host
     logging:

@@ -2,7 +2,7 @@ services:
   node:
     env_file:
       - .env
-    image: quorumengineering/quorum:24.4.1
+    image: registry.haven1.org/haven1-node:1.1.0
     volumes:
       - ./docker-entrypoint.sh:/docker-entrypoint.sh
       - ../../data:/data
