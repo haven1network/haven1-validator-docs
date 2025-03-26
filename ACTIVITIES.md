@@ -185,23 +185,6 @@ You can perform the following steps in the validator instance:
       keygen:latest
   ```
 
-## Update Cosigner image
-
-- Carry out this activity when the Haven1 Team instructs you.
-- We will provide you with the following information.
-  - link for cosigner image
-  - any additional information required for the .env file.
-
-1. Log into the validator instance.
-2. Run the following command to update the cosigner image:
-
-    ```bash
-    curl -L -o '<link to cosigner image>'
-    docker load -i '<link to cosigner image>'
-    ```
-
-3. Update the .env file regarding the instructions provided in the [activity](#generate-cosigner-env).
-
 ## Generate Cosigner .env
 
 - Carry out this activity when the Haven1 Team instructs you or when you need to update the .env file.
