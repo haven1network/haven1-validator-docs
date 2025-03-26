@@ -319,3 +319,37 @@ Assume the sudo user
   cd /home/ec2-user/validator/archive-node
   docker compose up -d
   ```
+
+## Update Node and Cosigner Images
+
+- Carry out this activity when the Haven1 Team instructs you.
+
+1. Log into the instance.
+2. Assume the sudo user:
+
+  ```bash
+  sudo su
+  ```
+
+3. Git pull the latest changes:
+
+  ```bash
+  cd /home/ec2-user/validator
+  git pull 
+  ```
+
+4. Start the node:
+
+  for validator node and cosigner:
+
+  ```bash
+  cd /home/ec2-user/validator
+  docker compose up -d
+  ```
+
+  for archive node:
+
+  ```bash
+  cd /home/ec2-user/validator/archive-node
+  docker compose up -d
+  ```
