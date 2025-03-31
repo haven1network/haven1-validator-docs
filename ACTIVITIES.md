@@ -212,7 +212,7 @@ Once the `.env.new` file is generated add the key details depending on the cloud
 AWS:
 
   ```env
-  KEY_0=kms:OUTPUT of the command `aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Signing'].TargetKeyId" --output text`
+  KEY_0=kms:OUTPUT of the command `aws kms list-aliases  --query "Aliases[?AliasName=='alias/Haven1-Validator'].TargetKeyId" --output text`
   AWS_CURRENT_REGION=<YOUR REGION HERE>
   ```
 
