@@ -203,7 +203,7 @@ Create a new file .env.new with the values of <> replaced with the appropriate v
   BRIDGE_RELAYER_ADDRESS=0xA04Fea11cf58d420687dD12aA5AcDFD70b872545
   SAFE_URL={"8811":"https://safe-transaction.haven1.org/","1":"https://safe-transaction-mainnet.safe.global/","8453":"https://safe-transaction-base.safe.global/"}
   SAFE_ADDRESS={"1:8811":"0x25AF0c735a659a34DeCA103e00B92Ef8450383a5","8811:1":"0x2C0C9a76d8061Cf35DB7f7c2a53085025aFa3057","8811:8453":"0x2C0C9a76d8061Cf35DB7f7c2a53085025aFa3057","8453:8811":"0x41FFd702c689B9d2057d58B99F59568cCe14aa88","8811:8811":"0x207CA9C87c4C1659DCb49B0143Bfeffd9711300a"}
-  BLOCK_CONFIRMATION={"8811":"0","1":"-1","8453":"-1"}
+  BLOCK_CONFIRMATION={"8811":"2","1":"-1","8453":"-1"}
   RPC={"8811": "https://rpc.haven1.org", "1":"<your ETH RPC endpoint>" ,"8453":"<your BASE RPC endpoint>"}
   ```
 
