@@ -8,6 +8,7 @@ services:
       - ../data:/data
       - ./keystore:/keystore:ro
     network_mode: host
+    restart: always
     entrypoint: ["sh", "-c", /docker-entrypoint.sh]
     logging:
       driver: json-file
@@ -18,6 +19,7 @@ services:
     env_file:
       - .env
     image: registry.haven1.org/cosigner:1.381.0
+    restart: always
     entrypoint: ["java", "-jar", "cosigner.jar"]
     network_mode: host
     logging:
