@@ -18,7 +18,7 @@ services:
   cosigner:
     env_file:
       - .env
-    image: registry.haven1.org/cosigner:1.383.3
+    image: registry.haven1.org/cosigner:1.385.0
     restart: always
     entrypoint: ["java", "-jar", "cosigner.jar"]
     network_mode: host
