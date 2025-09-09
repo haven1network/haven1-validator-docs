@@ -2,7 +2,7 @@ services:
   node:
     env_file:
       - .env
-    image: registry.haven1.org/haven1-node:1.1.0
+    image: registry.haven1.org/haven1-node:1.5.0
     volumes:
       - ./docker-entrypoint.sh:/docker-entrypoint.sh
       - ../../data:/data
